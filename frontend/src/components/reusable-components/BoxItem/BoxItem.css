@@ -1,0 +1,233 @@
+.BoxItem {
+  position: relative;
+  flex-basis: calc((100% / 3) - 10px);
+  width: calc((100% / 3) - 10px);
+  text-decoration: none;
+  outline: none;
+  margin: 2.5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 0px 0px rgba(0, 0, 0, 0);
+  background-color: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out 0s,
+    box-shadow 0.15s ease-in-out 0s;
+}
+.BoxItem:hover {
+  box-shadow: 0px 0px 5px -2px rgba(0, 0, 0, 0.15),
+    0px 0px 100px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  z-index: 1;
+}
+.BoxItem:focus {
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.05),
+    0px 0px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  z-index: 1;
+}
+
+
+
+.BoxItem--type-2 {
+  background-color: #fff;
+  z-index: 1;
+}
+
+
+
+.BoxItem__text {
+  padding: 0px 45px;
+}
+.BoxItem--type-1 .BoxItem__text {
+  padding: 45px 45px 0px 45px;
+}
+
+
+
+.BoxItem__title {
+  font-weight: 500;
+  text-align: left;
+  transition: color 0.15s ease-in-out 0s;
+}
+.BoxItem--type-1 .BoxItem__title,
+.BoxItem--type-2 .BoxItem__title {
+  color: #da3333;
+  font-size: 32px;
+  font-family: 'Arsenal', sans-serif;
+  letter-spacing: 0.75px;
+  line-height: 40px;
+  text-shadow: 1px 1px 2px #fff;
+}
+.BoxItem--type-1:hover .BoxItem__title,
+.BoxItem--type-1:focus .BoxItem__title {
+  color: rgba(0, 0, 0, 0.8);
+}
+.BoxItem--type-2 .BoxItem__title {
+  color: rgba(0, 0, 0, 0.8);
+}
+.BoxItem--type-2:hover .BoxItem__title,
+.BoxItem--type-2:focus .BoxItem__title {
+  color: #da3333;
+}
+.BoxItem--type-3 .BoxItem__title {
+  color: #000000;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 2px;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+.BoxItem--type-3:hover .BoxItem__title,
+.BoxItem--type-3:focus .BoxItem__title {
+  color: #da3333;
+}
+
+
+
+.BoxItem__desc {
+  color: #000;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 0.5px;
+  padding: 15px 0px;
+  transition: color 0.15s ease-in-out 0s;
+}
+.BoxItem--type-1 .BoxItem__desc,
+.BoxItem--type-2 .BoxItem__desc {
+  font-size: 17px;
+  line-height: 28px;
+}
+.BoxItem--type-3 .BoxItem__desc {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+
+.BoxItem__icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.BoxItem--type-1 .BoxItem__icon,
+.BoxItem--type-2 .BoxItem__icon {
+  width: 100px;
+  height: 100px;
+  background-size: 85% auto;
+  margin: 45px 45px -25px auto;
+  transform: scale(1.0);
+  opacity: 0.25;
+  transition: transform 0.15s ease-in-out 0s,
+    opacity 0.15s ease-in-out 0s;
+}
+.BoxItem--type-1:hover .BoxItem__icon,
+.BoxItem--type-1:focus .BoxItem__icon,
+.BoxItem--type-2:hover .BoxItem__icon,
+.BoxItem--type-2:focus .BoxItem__icon {
+  transform: scale(1.25);
+  opacity: 0.075;
+}
+
+.BoxItem__icon--design {
+  background-image: url('../../../static/icons/design-icon.png');
+}
+.BoxItem__icon--development {
+  background-image: url('../../../static/icons/development-icon.png');
+}
+.BoxItem__icon--deployment {
+  background-image: url('../../../static/icons/deployment-icon.png');
+}
+.BoxItem__icon--data-management {
+  background-image: url('../../../static/icons/database-management.png');
+}
+.BoxItem__icon--search-optimization {
+  background-image: url('../../../static/icons/search-optimization.png');
+}
+.BoxItem__icon--maintenance {
+  background-image: url('../../../static/icons/maintenance-icon.png');
+}
+.BoxItem__icon--managed-services {
+  background-image: url('../../../static/icons/managed-services-tick.png');
+}
+.BoxItem__icon--api-integration {
+  background-image: url('../../../static/icons/api-integration.png');
+}
+.BoxItem__icon--custom-application {
+  background-image: url('../../../static/icons/custom-application.png');
+}
+.BoxItem__icon--performance-optimization {
+  background-image: url('../../../static/icons/performance-optimization.png');
+}
+
+.BoxItem--type-3 .BoxItem__icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-size: 40% auto;
+  margin: 0px 0px 0px 0px;
+}
+
+.BoxItem__icon--conversion {
+  background-image: url('../../../static/icons/sales-conversion.png');
+}
+.BoxItem__icon--subscription {
+  background-image: url('../../../static/icons/hollow-cube.png');
+}
+.BoxItem__icon--pricematch {
+  background-image: url('../../../static/icons/price-tag.png');
+}
+
+
+
+.BoxItem__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 45px;
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.BoxItem__button__text {
+  flex-basis: calc(100% - 20px);
+  color: #444;
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.75px;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out 0s;
+}
+.BoxItem:hover .BoxItem__button__text,
+.BoxItem:focus .BoxItem__button__text {
+  opacity: 1.0;
+}
+
+.BoxItem--type-3 .BoxItem__button__text {
+  font-size: 16px;
+}
+
+
+
+.BoxItem__button__arrow {
+  position: relative;
+  flex-basis: 20px;
+  width: 20px;
+  height: 20px;
+  left: -50px;
+  opacity: 0;
+  background-image: url('../../../static/icons/arrow-right-black.png');
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: left 0.15s ease-in-out 0s,
+    opacity 0.15s ease-in-out 0s;
+}
+.BoxItem:hover .BoxItem__button__arrow,
+.BoxItem:focus .BoxItem__button__arrow {
+  left: -35px;
+  opacity: 0.5;
+}
+
+
