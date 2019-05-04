@@ -1,0 +1,14 @@
+.SectionTitle {
+
+}
+.SectionTitle__h2 {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 24px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #fff;
+  margin-left: 50px;
+  margin-bottom: 75px;
+}
