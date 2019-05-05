@@ -1,0 +1,72 @@
+.HeaderNav {
+  height: 100%;
+}
+.HeaderNav__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.HeaderNavItem {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  list-style-type: none;
+  margin: 0px;
+}
+.HeaderNavItem__link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  color: #000;
+  text-decoration: none;
+}
+
+.HeaderNavItem__text {
+  position: relative;
+  color: #000;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.75px;
+  text-transform: lowercase;
+  padding: 15px 30px;
+  transition: color 0.25s ease-in-out 0s;
+}
+.HeaderNavItem:not(:last-child) .HeaderNavItem__text {
+  box-shadow: inset -1px 0px 0px 0px #f7f4f3;
+}
+
+.HeaderNavItem__background {
+  position: absolute;
+  top: 0px;
+  right: -1px;
+  width: 0%;
+  height: 100%;
+  border-radius: 1px;
+  background-color: transparent;
+  overflow: hidden;
+  margin-left: -25px;
+  transition: all 0.25s ease-in-out 0s;
+}
+.HeaderNavItem__link:hover .HeaderNavItem__background,
+.HeaderNavItem__link:focus .HeaderNavItem__background {
+  width: calc(100% + 2px);
+  left: -1px;
+  margin-left: 0px;
+  background-color: #f7f4f3;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+
+  .HeaderNav {
+    display: none;
+  }
+
+}

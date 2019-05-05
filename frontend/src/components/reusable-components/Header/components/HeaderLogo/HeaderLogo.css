@@ -1,0 +1,42 @@
+.HeaderLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-basis: 200px;
+  width: 200px;
+  height: 100%;
+  margin-left: -19px;
+  cursor: pointer;
+}
+.HeaderLogo__image {
+  position: relative;
+  width: 162px;
+  height: 35px;
+  background-image: url('../../../../../static/logos/willsquad_logo_medium_dark.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.HeaderLogo--big {
+  flex-basis: 242px;
+  width: 242px;
+}
+.HeaderLogo--big > .HeaderLogo__image {
+  width: 200px;
+  height: 45px;
+}
+
+
+
+
+
+@media only screen and (max-width: 640px) {
+
+  .HeaderLogo__image {
+    width: 150px;
+    height: 32px;
+  }
+
+}
