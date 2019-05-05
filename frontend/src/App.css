@@ -22,3 +22,13 @@ section {
 .App {
 
 }
+
+
+
+@media only screen and (max-width: 640px) {
+
+  section {
+    padding: 150px 0px;
+  }
+
+}

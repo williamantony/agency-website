@@ -4,7 +4,7 @@
   width: calc((100% / 3) - 10px);
   text-decoration: none;
   outline: none;
-  margin: 2.5px;
+  margin: 5px;
   border-radius: 5px;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.05),
     0px 0px 0px 0px rgba(0, 0, 0, 0);
@@ -39,7 +39,8 @@
 .BoxItem__text {
   padding: 0px 45px;
 }
-.BoxItem--type-1 .BoxItem__text {
+.BoxItem--type-1 .BoxItem__text,
+.BoxItem--type-2 .BoxItem__text {
   padding: 45px 45px 0px 45px;
 }
 
@@ -64,11 +65,11 @@
   color: rgba(0, 0, 0, 0.8);
 }
 .BoxItem--type-2 .BoxItem__title {
-  color: rgba(0, 0, 0, 0.8);
+  color: #da3333;
 }
 .BoxItem--type-2:hover .BoxItem__title,
 .BoxItem--type-2:focus .BoxItem__title {
-  color: #da3333;
+  color: rgba(0, 0, 0, 0.8);
 }
 .BoxItem--type-3 .BoxItem__title {
   color: #000000;
@@ -192,7 +193,7 @@
 .BoxItem__button__text {
   flex-basis: calc(100% - 20px);
   color: #444;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
   letter-spacing: 0.75px;
@@ -204,18 +205,13 @@
   opacity: 1.0;
 }
 
-.BoxItem--type-3 .BoxItem__button__text {
-  font-size: 16px;
-}
-
-
 
 .BoxItem__button__arrow {
   position: relative;
   flex-basis: 20px;
   width: 20px;
   height: 20px;
-  left: -50px;
+  left: -20px;
   opacity: 0;
   background-image: url('../../../static/icons/arrow-right-black.png');
   background-position: center center;
@@ -226,8 +222,59 @@
 }
 .BoxItem:hover .BoxItem__button__arrow,
 .BoxItem:focus .BoxItem__button__arrow {
-  left: -35px;
+  left: 0px;
   opacity: 0.5;
 }
 
 
+
+
+
+
+
+@media only screen and (max-width: 640px) {
+
+  .BoxItem {
+    flex-basis: 100%;
+    margin: 10px;
+  }
+  
+  .BoxItem__text {
+    padding: 0px 20px;
+  }
+  .BoxItem--type-1 .BoxItem__text,
+  .BoxItem--type-2 .BoxItem__text {
+    padding: 75px 20px 0px 20px;
+  }
+
+  .BoxItem--type-1 .BoxItem__icon,
+  .BoxItem--type-2 .BoxItem__icon {
+    margin-right: 25px;
+    transform: scale(1.25);
+    opacity: 0.1;
+  }
+  .BoxItem--type-3 .BoxItem__icon {
+    margin-left: -20px;
+  }
+
+  .BoxItem__button {
+    padding: 25px 20px;
+  }
+  /* .BoxItem--type-1 .BoxItem__button,
+  .BoxItem--type-2 .BoxItem__button {
+    justify-content: flex-end;
+  } */
+  .BoxItem .BoxItem__button__text {
+    flex-basis: auto;
+    margin-right: 15px;
+    opacity: 1.0;
+  }
+  .BoxItem .BoxItem__button__arrow {
+    flex-basis: 15px;
+    width: 15px;
+    height: 15px;
+    left: 0px;
+    opacity: 0.25;
+  }
+
+}
