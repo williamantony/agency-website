@@ -1,0 +1,123 @@
+.ContactInfo {
+  display: flex;
+  justify-content: center;
+}
+.ContactInfo__content {
+  padding: 0px 50px;
+}
+
+.ContactInfo__title {
+  color: #d9724e;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+}
+
+.ContactInfo__phone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -30px -25px 50px -25px;
+  padding: 45px 25px 20px 25px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out 0s;
+}
+.ContactInfo__phone:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.ContactInfo__phone__text {
+  flex-basis: calc(100% - 125px);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-right: 50px;
+}
+.ContactInfo__phone__vanity {
+  color: #777;
+  font-size: 36px;
+  font-family: 'Arsenal', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  transition: color 0.15s ease-in-out 0s;
+}
+
+.ContactInfo__phone__icon {
+  flex-basis: 75px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.035);
+  background-image: url('../../../static/icons/phone-icon.png');
+  background-size: 50% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.0);
+  opacity: 1.0;
+  transition: border-radius 0.15s ease-in-out 0s,
+    opacity 0.15s ease-in-out 0s,
+    background-color 0.15s ease-in-out 0s,
+    transform 0.15s ease-in-out 0s;
+}
+.ContactInfo__phone:hover .ContactInfo__phone__icon {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0.5;
+  transform: scale(1.35);
+}
+
+.ContactInfo__hours {
+  max-width: 300px;
+  margin: 25px 0px;
+}
+.ContactInfo__hours__item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 12px 0px;
+}
+
+.ContactInfo__note {
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  margin: 25px 0px;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+
+  .ContactInfo {
+    display: block;
+    padding: 100px 50px;
+    margin: 0px 0px 0px -25px;
+    background-color: #fff;
+  }
+  .ContactInfo__content {
+    padding: 0px;
+  }
+
+  .ContactInfo__phone__text {
+    margin-right: 0px;
+  }
+  .ContactInfo__phone__icon {
+    display: none;
+  }
+
+  .ContactInfo__hours {
+    max-width: 360px;
+  }
+
+}
