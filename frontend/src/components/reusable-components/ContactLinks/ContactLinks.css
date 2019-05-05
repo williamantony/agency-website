@@ -1,0 +1,96 @@
+.ContactLinks {
+  margin: 0px 50px;
+}
+
+.ContactLinks__set {
+  margin: 0px -20px;
+}
+.ContactLinks__set:not(:first-child) {
+  margin-top: 50px;
+}
+
+.ContactLinks__set__title {
+  color: #d9724e;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.ContactLinks__set__item {
+  color: #000;
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 20px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0),
+    0px 0px 5px -2px rgba(0, 0, 0, 0);
+  background-color: transparent;
+  transition: background 0.15s ease-in-out 0s,
+    box-shadow 0.15s ease-in-out 0s;
+  cursor: pointer;
+}
+.ContactLinks__set__item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.ContactLinks__set__item:hover {
+  background-color: #fff;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1),
+    0px 0px 5px -2px rgba(0, 0, 0, 0.1);
+}
+
+.ContactLinks__buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 25px 50px 0px 50px;
+  margin: 25px 0px 0px -50px;
+}
+.ContactLinks__buttons__item {
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 15px 20px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: #cd856b;
+  cursor: pointer;
+  margin: 0px 10px 10px 0px;
+  transition: background-color 0.15s ease-in-out 0s;
+}
+.ContactLinks__buttons__item:hover {
+  background-color: #b06a50;
+}
+.ContactLinks__buttons__item--dark {
+  background-color: #777;
+}
+.ContactLinks__buttons__item--dark:hover {
+  background-color: #656565;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+
+  .ContactLinks {
+    padding: 100px 25px;
+    margin: -100px 0px 0px 0px;
+  }
+  .ContactLinks__set__item {
+    font-size: 17px;
+  }
+
+  .ContactLinks__buttons {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
