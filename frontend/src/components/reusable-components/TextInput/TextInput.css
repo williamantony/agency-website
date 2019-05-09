@@ -1,0 +1,64 @@
+.TextInput {
+  padding: 25px 25px 15px 25px;
+  margin-bottom: 25px;
+  cursor: text;
+}
+.TextInput[data-focused="false"] {
+  background-color: transparent;
+}
+.TextInput[data-focused="false"]:hover {
+  background-color: #fafafa;
+}
+.TextInput[data-focused="true"] {
+  background-color: #f5f5f5;
+}
+
+.TextInput__holder {
+  display: flex;
+  position: relative;
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
+  padding-top: 25px;
+}
+
+.TextInput__label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #1976D2;
+  font-size: 17px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: text;
+}
+.TextInput__input {
+  display: block;
+  flex-basis: 100%;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border: 0px;
+  outline: 0px;
+  padding: 10px 5px 10px 0px;
+  box-shadow: 0px 0px 0px 0px #000;
+  background-color: transparent;
+}
+
+.TextInput__clear-icon {
+  position: absolute;
+  top: 35px;
+  right: -16px;
+  width: 25px;
+  height: 25px;
+  background-image: url('../../../static/icons/close-icon-2.png');
+  background-size: 10px auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out 0s;
+}
+.TextInput[data-filled="true"] .TextInput__clear-icon {
+  opacity: 0.5;
+}
