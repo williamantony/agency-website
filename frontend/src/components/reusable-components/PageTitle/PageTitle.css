@@ -1,0 +1,19 @@
+.PageTitle {
+  position: relative;
+  text-align: center;
+  padding: 50px 80px;
+  padding-top: 150px;
+  border-bottom: 1px solid #ded5d3;
+}
+
+.PageTitle__h1 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: rgba(121, 85, 72, 0.25);
+  font-size: 60px;
+  font-family: 'Arsenal', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 2px;
+}
