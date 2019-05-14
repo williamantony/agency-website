@@ -1,0 +1,26 @@
+.WhyChoose {
+  background-color: #fafafa;
+}
+.WhyChoose__list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.WhyChoose__categories {
+  display: flex;
+  justify-content: flex-start;
+}
+.WhyChoose__categories__item {
+  padding: 10px 0px;
+  margin: 0px 20px;
+  border-bottom: 1px solid #000000;
+}
+
+.WhyChoose__categories__item__text {
+  color: #333;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
