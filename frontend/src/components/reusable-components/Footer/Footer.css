@@ -1,0 +1,30 @@
+.Footer {
+  padding: 100px 80px;
+  background-color: #523b3d;
+}
+
+.Footer__nav {
+  display: flex;
+  justify-content: center;
+}
+.Footer__nav__list {
+  display: flex;
+}
+.Footer__nav__list__item {
+  padding: 5px 25px;
+}
+.Footer__nav__list__item:not(:last-child) {
+  border-right: 1px solid #6c585a;
+}
+.Footer__nav__list__item__link {
+  color: #d7ccc8;
+  font-size: 17px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.25px;
+}
+.Footer__nav__list__item__link:hover {
+  color: #fff;
+}
