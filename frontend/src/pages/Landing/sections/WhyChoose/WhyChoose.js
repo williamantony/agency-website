@@ -6,15 +6,15 @@ import BoxItem from '../../../../components/reusable-components/BoxItem/BoxItem'
 const WhyChoose = () => (
   <section className="WhyChoose">
     <div className="wrapper">
-      <SectionTitle text="Why Choose Us" align="left" bgColor="#fafafa" />
+      <SectionTitle text="Why Choose Us" align="left" bgColor="#efebe9" />
       <div className="WhyChoose__list">
         <BoxItem
           type="3"
-          title="Performance"
+          title="Conversion"
           description="
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-          icon="subscription"
+          icon="conversion"
         />
         <BoxItem
           type="3"
@@ -22,7 +22,7 @@ const WhyChoose = () => (
           description="
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-          icon="pricematch"
+          icon="security"
         />
         <BoxItem
           type="3"

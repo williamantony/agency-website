@@ -9,6 +9,7 @@ const PrimeServices = () => (
       
         <div className="PrimeServices__image">
           <div className="PrimeServices__image__bg-image"></div>
+          <div className="PrimeServices__image__bg-dots"></div>
           <div className="PrimeServices__image__bg-overlay"></div>
         </div>
 
@@ -52,6 +53,7 @@ const PrimeServices = () => (
               </div>
             </div>
           </div>
+
         </div>
 
       </div>
