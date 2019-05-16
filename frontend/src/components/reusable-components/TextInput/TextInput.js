@@ -60,7 +60,7 @@ class TextInput extends Component {
   }
 
   render() {
-    const allowedTypes = [ 'text', 'number', 'password', 'email', 'tel', ];
+    const allowedTypes = [ 'textarea', 'text', 'number', 'password', 'email', 'tel', ];
 
     if (!allowedTypes.includes(this.input.type)) {
       return null;
@@ -75,17 +75,35 @@ class TextInput extends Component {
       >
         <div className="TextInput__holder">
           <label htmlFor={this.input.name} className="TextInput__label">{ this.input.label }</label>
-          <input
-            ref={this.input.element}
-            id={this.input.name}
-            className="TextInput__input"
-            type={this.input.type}
-            placeholder={this.input.placeholder}
-            value={this.state.value}
-            onChange={this.handleInput}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
+          {
+            (this.input.type === 'textarea')
+            ? (
+              <textarea
+                ref={this.input.element}
+                id={this.input.name}
+                className="TextInput__input"
+                type={this.input.type}
+                placeholder={this.input.placeholder}
+                value={this.state.value}
+                onChange={this.handleInput}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+              ></textarea>
+            ) : (
+              <input
+                ref={this.input.element}
+                id={this.input.name}
+                className="TextInput__input"
+                type={this.input.type}
+                placeholder={this.input.placeholder}
+                value={this.state.value}
+                onChange={this.handleInput}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+              />
+            )
+          }
+          
           <div className="TextInput__clear-icon" onClick={this.clearInput} />
         </div>
       </div>

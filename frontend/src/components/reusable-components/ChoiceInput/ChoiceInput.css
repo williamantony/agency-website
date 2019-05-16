@@ -1,7 +1,9 @@
 .ChoiceInput {
+  border-radius: 5px;
   padding: 25px 25px 15px 25px;
-  cursor: text;
+  margin: 10px;
   background-color: transparent;
+  cursor: text;
 }
 .ChoiceInput[data-focused="false"] {
   background-color: transparent;
@@ -24,7 +26,7 @@
   top: 0px;
   left: 0px;
   color: #1976D2;
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -47,21 +49,22 @@
 .ChoiceInput__input__options__item {
   display: flex;
   align-items: center;
-  margin-right: 50px;
+  padding: 15px;
+  margin: -15px 25px -15px -15px;
   cursor: pointer;
 }
 .ChoiceInput__input__options__item__text {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
   letter-spacing: 0.5px;
-  padding: 0px 15px;
+  padding: 0px 0px 0px 10px;
   cursor: pointer;
 }
 .ChoiceInput__input__options__item__checkbox {
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   outline: none;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.075);
