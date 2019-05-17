@@ -1,0 +1,71 @@
+.StepProgress {
+  height: 0px;
+  padding: 50px;
+  margin: 0px auto;
+  transform: scale(0.99);
+}
+.StepProgress__bar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  border-radius: 2.5px;
+  background-color: #e5e5e5;
+  overflow: hidden;
+}
+.StepProgress__bar__fill {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 50%;
+  height: 100%;
+  background-color: #3e96f3;
+  transition: width 0.35s ease-in-out 0s;
+}
+
+.StepProgress__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  margin: -40px -25px 0px -25px;
+}
+.StepProgress__list__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: scale(0.75);
+  transition-property: color, box-shadow, background-color;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.StepProgress__list__item[data-passed="false"] {
+  color: #e5e5e5;
+  box-shadow: inset 0px 0px 0px 3px #e5e5e5,
+    0px 0px 0px 25px #fff;
+  background-color: #fff;
+  transition-duration: 0.25s;
+}
+.StepProgress__list__item[data-passed="false"]:hover {
+  color: #3e96f3;
+  box-shadow: inset 0px 0px 0px 3px #3e96f3,
+    0px 0px 0px 25px #fff;
+  background-color: #fff;
+  transition-duration: 0.25s;
+}
+
+.StepProgress__list__item[data-passed="true"] {
+  color: #3e96f3;
+  box-shadow: inset 0px 0px 0px 3px #3e96f3,
+    0px 0px 0px 25px #fff;
+  background-color: #fff;
+  transition-duration: 0.5s;
+}
