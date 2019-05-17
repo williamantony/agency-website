@@ -68,43 +68,44 @@ class TextInput extends Component {
 
     return (
       <div
-        className="TextInput"
+        className={ `TextInput ${ (this.input.label === '') ? 'TextInput--nolabel' : '' }` }
         data-focused={this.state.isFocused}
         data-filled={this.state.isFilled}
-        onClick={this.focusInput}
       >
-        <div className="TextInput__holder">
-          <label htmlFor={this.input.name} className="TextInput__label">{ this.input.label }</label>
-          {
-            (this.input.type === 'textarea')
-            ? (
-              <textarea
-                ref={this.input.element}
-                id={this.input.name}
-                className="TextInput__input"
-                type={this.input.type}
-                placeholder={this.input.placeholder}
-                value={this.state.value}
-                onChange={this.handleInput}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-              ></textarea>
-            ) : (
-              <input
-                ref={this.input.element}
-                id={this.input.name}
-                className="TextInput__input"
-                type={this.input.type}
-                placeholder={this.input.placeholder}
-                value={this.state.value}
-                onChange={this.handleInput}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-              />
-            )
-          }
-          
-          <div className="TextInput__clear-icon" onClick={this.clearInput} />
+        <div className="TextInput__bg" onMouseDown={this.handleBlur} />
+        <div className="TextInput__holder" onClick={this.focusInput}>
+          <div className="TextInput__input__holder">
+            <label htmlFor={this.input.name} className="TextInput__label">{ this.input.label }</label>
+            {
+              (this.input.type === 'textarea')
+              ? (
+                <textarea
+                  ref={this.input.element}
+                  id={this.input.name}
+                  className="TextInput__input"
+                  type={this.input.type}
+                  placeholder={this.input.placeholder}
+                  value={this.state.value}
+                  onChange={this.handleInput}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                ></textarea>
+              ) : (
+                <input
+                  ref={this.input.element}
+                  id={this.input.name}
+                  className="TextInput__input"
+                  type={this.input.type}
+                  placeholder={this.input.placeholder}
+                  value={this.state.value}
+                  onChange={this.handleInput}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                />
+              )
+            }
+            <div className="TextInput__clear-icon" onClick={this.clearInput} />
+          </div>
         </div>
       </div>
     );

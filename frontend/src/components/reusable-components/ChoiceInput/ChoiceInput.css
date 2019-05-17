@@ -5,6 +5,9 @@
   background-color: transparent;
   cursor: text;
 }
+.ChoiceInput--nolabel {
+  padding: 15px 25px;
+}
 .ChoiceInput[data-focused="false"] {
   background-color: transparent;
 }
@@ -19,6 +22,9 @@
   display: flex;
   position: relative;
   padding-top: 25px;
+}
+.ChoiceInput--nolabel .ChoiceInput__holder {
+  padding-top: 0px;
 }
 
 .ChoiceInput__label {
@@ -74,10 +80,10 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 .ChoiceInput__input__options__item__checkbox[data-selected="true"] {
-  background-color: #329dec;
+  background-color: #999;
 }
 .ChoiceInput__input__options__item__checkbox[data-selected="true"]:focus {
-  background-color: #1c87d5;
+  background-color: #777;
 }
 
 .ChoiceInput__input__options__item__checkbox__image {

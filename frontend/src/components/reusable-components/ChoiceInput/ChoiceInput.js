@@ -83,7 +83,7 @@ class ChoiceInput extends Component {
 
     return (
       <div
-        className="ChoiceInput"
+        className={ `ChoiceInput ${ (this.input.label === '') ? 'ChoiceInput--nolabel' : '' }` }
         data-filled={this.state.isFilled}
         data-focused={this.state.isFocused}
       >

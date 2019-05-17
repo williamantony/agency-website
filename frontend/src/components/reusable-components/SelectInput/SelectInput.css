@@ -1,26 +1,80 @@
 .SelectInput {
+  position: relative;
+  z-index: 1;
+  transition: z-index 1s ease-in-out 0s;
+}
+.SelectInput[data-focused="true"] {
+  z-index: 2;
+  transition: z-index 0s ease-in-out 0s;
+}
+
+
+
+.SelectInput__bg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+.SelectInput[data-focused="false"] .SelectInput__bg,
+.SelectInput[data-opened="false"] .SelectInput__bg {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s ease-in-out 0.1s,
+    opacity 0.25s ease-in-out 0s;
+}
+.SelectInput[data-focused="true"] .SelectInput__bg,
+.SelectInput[data-opened="true"] .SelectInput__bg {
+  visibility: visible;
+  opacity: 0.9;
+  transition: visibility 0.25s ease-in-out 0s,
+    opacity 0.25s ease-in-out 0s;
+}
+
+
+
+.SelectInput__holder {
+  position: relative;
   border-radius: 5px;
   padding: 25px 25px 15px 25px;
   margin: 10px;
   outline: none;
   cursor: pointer;
   background-color: transparent;
+  transition: background-color 0.25s ease-in-out 0s;
+  z-index: 1;
 }
-.SelectInput[data-opened="false"] {
+.SelectInput--nolabel .SelectInput__holder {
+  padding: 15px 25px;
+}
+.SelectInput[data-focused="false"] .SelectInput__holder,
+.SelectInput[data-opened="false"] .SelectInput__holder {
   background-color: transparent;
 }
-.SelectInput[data-opened="false"]:hover {
+.SelectInput[data-focused="false"] .SelectInput__holder:hover {
   background-color: rgba(0, 0, 0, 0.015);
+  transition: background-color 0.25s ease-in-out 0s;
 }
-.SelectInput:focus,
-.SelectInput[data-opened="true"] {
-  background-color: rgba(0, 0, 0, 0.035);
+.SelectInput[data-focused="true"] .SelectInput__holder {
+  background-color: #fff;
+  transition: background-color 0.25s ease-in-out 0s;
+}
+.SelectInput[data-opened="true"] .SelectInput__holder {
+  background-color: #f5f5f5;
+  transition: background-color 0.25s ease-in-out 0s;
 }
 
-.SelectInput__holder {
+
+
+.SelectInput__input__holder {
   display: flex;
   position: relative;
   padding-top: 25px;
+}
+.SelectInput--nolabel .SelectInput__input__holder {
+  padding-top: 0px;
 }
 
 .SelectInput__label {
@@ -49,6 +103,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 10px 0px;
   margin: -10px 0px 0px 0px;
   box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
@@ -86,26 +141,37 @@
 .SelectInput__options {
   position: relative;
   height: 0px;
-  z-index: 999;
 }
 .SelectInput__options__list {
-  max-height: 0px;
+  visibility: hidden;
+  position: relative;
+  top: -25px;
   margin: 0px -25px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; 
   overflow: hidden;
   background-color: #f5f5f5;
-  transition: display 0s ease-in-out 5s;
+  opacity: 0;
+  transition: visibility 0.15s linear 0.25s,
+    top 0.15s linear 0.15s,
+    opacity 0.15s linear 0s;
 }
 .SelectInput[data-opened="true"] .SelectInput__options__list {
-  max-height: 360px;
+  visibility: visible;
+  top: 0px;
+  opacity: 1.0;
+  transition: visibility 0.25s linear 0s,
+    top 0.25s linear 0.075s,
+    opacity 0.25s linear 0.15s;
 }
 .SelectInput__options__list__holder {
-  margin: 2px;
+
 }
 .SelectInput__options__item {
   position: relative;
-  padding: 15px 23px;
+  padding: 17px 25px;
   outline: none;
-  margin-bottom: 2px;
+  margin-top: 3px;
   background-color: #fff;
   cursor: pointer;
 }

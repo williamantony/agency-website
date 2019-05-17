@@ -24,6 +24,7 @@ class SelectInput extends Component {
       value: '',
       isOpen: false,
       isFilled: false,
+      isFocused: false,
     };
   }
 
@@ -46,6 +47,7 @@ class SelectInput extends Component {
   toggleOptions = () => {
     this.setState({
       isOpen: !this.state.isOpen,
+      isFocused: true,
     });
   }
 
@@ -55,49 +57,63 @@ class SelectInput extends Component {
   }
 
   handleFocus = () => {
+    this.setState({ isFocused: true });
+  }
+
+  handleFocusToOpen = () => {
     this.setState({ isOpen: true });
   }
 
   handleBlur = () => {
-    this.setState({ isOpen: false });
+    this.setState({
+      isOpen: false,
+      isFocused: false,
+    });
   }
 
   render() {
     return (
       <div
-        className="SelectInput"
+        className={ `SelectInput ${ (this.input.label === '') ? 'SelectInput--nolabel' : '' }` }
+        data-focused={this.state.isFocused}
         data-filled={this.state.isFilled}
         data-opened={this.state.isOpen}
-        tabIndex="0"
-        onClick={this.toggleOptions}
-        onKeyPress={this.toggleOptionsOnKeyPress}
-        onBlur={this.handleBlur}
       >
-        <div className="SelectInput__holder">
-          <label htmlFor={this.input.name} className="SelectInput__label">{ this.input.label }</label>
-          <div className="SelectInput__input">
-            <div className="SelectInput__placeholder">
-              <div className="SelectInput__placeholder__text">{ this.input.placeholder }</div>
-              <div className="SelectInput__placeholder__icon" />
-            </div>
-            <div className="SelectInput__options">
-              <div className="SelectInput__options__list">
-                <div className="SelectInput__options__list__holder">
-                  {
-                    this.input.options.map((option, index) => (
-                      <div
-                        key={option.id}
-                        className="SelectInput__options__item"
-                        tabIndex={this.state.isOpen ? '0' : '-1'}
-                        onClick={() => this.setInput(option.value, option.text)}
-                        onKeyPress={(e) => this.setInputOnKeyPress(e, option.value, option.text)}
-                        onFocus={this.handleFocus}
-                        onBlur={this.handleBlur}
-                      >
-                        <div className="SelectInput__options__item__text">{ option.text }</div>
-                      </div>
-                    ))
-                  }
+        <div className="SelectInput__bg" onMouseDown={this.handleBlur} />
+        <div
+          className="SelectInput__holder"
+          onClick={this.toggleOptions} 
+          tabIndex="0"
+          onKeyPressCapture={this.toggleOptionsOnKeyPress}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+        >
+          <div className="SelectInput__input__holder">
+            <label htmlFor={this.input.name} className="SelectInput__label">{ this.input.label }</label>
+            <div className="SelectInput__input">
+              <div className="SelectInput__placeholder">
+                <div className="SelectInput__placeholder__text">{ this.input.placeholder }</div>
+                <div className="SelectInput__placeholder__icon" />
+              </div>
+              <div className="SelectInput__options">
+                <div className="SelectInput__options__list">
+                  <div className="SelectInput__options__list__holder">
+                    {
+                      this.input.options.map((option, index) => (
+                        <div
+                          key={option.id}
+                          className="SelectInput__options__item"
+                          tabIndex={this.state.isOpen ? '0' : '-1'}
+                          onClick={() => this.setInput(option.value, option.text)}
+                          onKeyPress={(e) => this.setInputOnKeyPress(e, option.value, option.text)}
+                          onFocus={this.handleFocusToOpen}
+                          onBlur={this.handleBlur}
+                        >
+                          <div className="SelectInput__options__item__text">{ option.text }</div>
+                        </div>
+                      ))
+                    }
+                  </div>
                 </div>
               </div>
             </div>

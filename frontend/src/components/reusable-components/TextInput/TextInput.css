@@ -1,24 +1,70 @@
 .TextInput {
+  position: relative;
+  z-index: 1;
+  transition: z-index 1s ease-in-out 0s;
+}
+.TextInput[data-focused="true"] {
+  z-index: 2;
+  transition: z-index 0s ease-in-out 0s;
+}
+
+
+
+.TextInput__bg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+.TextInput[data-focused="false"] .TextInput__bg {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s ease-in-out 0.25s,
+    opacity 0.25s ease-in-out 0.25s;
+}
+.TextInput[data-focused="true"] .TextInput__bg {
+  visibility: visible;
+  opacity: 0.9;
+  transition: visibility 0.25s ease-in-out 0s,
+    opacity 0.25s ease-in-out 0s;
+}
+
+
+
+.TextInput__holder {
+  position: relative;
   border-radius: 5px;
   padding: 25px 25px 15px 25px;
   margin: 10px;
   cursor: text;
+  transition: background-color 0.25s ease-in-out 0.25s;
+  z-index: 1;
 }
-.TextInput[data-focused="false"] {
+.TextInput--nolabel .TextInput__holder {
+  padding: 15px 25px;
+}
+.TextInput[data-focused="false"] .TextInput__holder {
   background-color: transparent;
 }
-.TextInput[data-focused="false"]:hover {
+.TextInput[data-focused="false"] .TextInput__holder:hover {
   background-color: rgba(0, 0, 0, 0.015);
+  transition: background-color 0.25s ease-in-out 0.25s;
 }
-.TextInput[data-focused="true"] {
-  background-color: rgba(0, 0, 0, 0.035);
+.TextInput[data-focused="true"] .TextInput__holder {
+  background-color: #fff;
+  transition: background-color 0.25s ease-in-out 0s;
 }
 
-.TextInput__holder {
+.TextInput__input__holder {
   display: flex;
   position: relative;
   box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
   padding-top: 20px;
+}
+.TextInput--nolabel .TextInput__input__holder {
+  padding-top: 0px;
 }
 
 .TextInput__label {
@@ -41,7 +87,7 @@
   letter-spacing: 0.5px;
   border: 0px;
   outline: 0px;
-  padding: 10px 5px 10px 0px;
+  padding: 10px 25px 10px 0px;
   box-shadow: 0px 0px 0px 0px #000;
   background-color: transparent;
 }
@@ -54,7 +100,7 @@ textarea.TextInput__input {
 .TextInput__clear-icon {
   position: absolute;
   top: 35px;
-  right: -16px;
+  right: -5px;
   width: 25px;
   height: 25px;
   background-image: url('../../../static/icons/close-icon-2.png');
@@ -64,6 +110,9 @@ textarea.TextInput__input {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.15s ease-in-out 0s;
+}
+.TextInput--nolabel .TextInput__clear-icon {
+  top: 15px;
 }
 .TextInput[data-filled="true"] .TextInput__clear-icon {
   opacity: 0.5;
