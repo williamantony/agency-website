@@ -24,6 +24,24 @@ class TextInput extends Component {
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.value) {
+      return {
+        value: props.value,
+        isFilled: props.value !== '',
+      };
+    }
+    return null;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.value !== this.state.value) return true;
+    if (nextState.isFocused !== this.state.isFocused) return true;
+    if (nextState.isFilled !== this.state.isFilled) return true;
+    
+    return false;
+  }
+
   setInput = (value) => {
     this.props.setFormData(this.input.form, {
       [this.input.name]: value,
@@ -113,8 +131,10 @@ class TextInput extends Component {
 
 }
 
-const mapStateToProps = state => {
-  return state;
+const mapStateToProps = (state, ownProps) => {
+  const formData = state.forms[ownProps.form] || {};
+  const value = formData[ownProps.name] || '';
+  return { value };
 };
 
 const mapDispatchToProps = {

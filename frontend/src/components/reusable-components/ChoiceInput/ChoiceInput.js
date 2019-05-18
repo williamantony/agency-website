@@ -12,6 +12,7 @@ class ChoiceInput extends Component {
       form: props.form || 'default_form',
       type: props.type || 'checkbox',
       label: props.label || '',
+      value: '',
       options: (props.options || []).map(option => ({
         ...option,
         id: option.id || uuid(),
@@ -21,22 +22,61 @@ class ChoiceInput extends Component {
       })),
     };
 
-    this.selection = this.input.options.reduce((selection, option) => {
-      return {
-        ...selection,
-        [option.value]: option.selected,
-      };
-    }, {});
+    this.selection = {};
+
+    this.input.options.forEach(option => {
+      this.selection[option.value] = option.selected;
+      if (option.selected)
+        this.input.value = option.value;
+    });
     
     this.state = {
-      value: this.selection,
+      value: this.input.value,
+      selection: this.selection,
       isFocused: false,
       isFilled: false,
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.value) {
+      const selection = Object.keys(state.selection).reduce((selection, name) => {
+        return {
+          ...selection,
+          [name]: false,
+        };
+      }, {});
+
+      const returns = {
+        value: props.value,
+        selection,
+        isFilled: props.value !== '',
+      }
+
+      if (props.value !== '') {
+        return {
+          ...returns,
+          selection: {
+            ...selection,
+            [props.value]: true,
+          },
+        };
+      }
+      return returns;
+    }
+    return null;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.value !== this.state.value) return true;
+    if (nextState.isFocused !== this.state.isFocused) return true;
+    if (nextState.isFilled !== this.state.isFilled) return true;
+    return false;
+  }
+
   chooseOption = (optionValue, e) => {
     if (!!e && e.type === 'keypress') {
+      e.preventDefault();
       if (e.key !== 'Enter') {
         return false;
       }
@@ -58,6 +98,7 @@ class ChoiceInput extends Component {
 
     this.setState({
       value,
+      selection: this.selection,
       isFilled: value.length !== 0,
     });
   }
@@ -96,7 +137,7 @@ class ChoiceInput extends Component {
                   <div
                     key={option.id}
                     className="ChoiceInput__input__options__item"
-                    data-selected={this.selection[option.value]}
+                    data-selected={this.state.selection[option.value]}
                     onClick={() => this.chooseOption(option.value)}
                     onKeyPress={(e) => this.chooseOption(option.value, e)}
                     onFocus={this.handleFocus}
@@ -104,12 +145,12 @@ class ChoiceInput extends Component {
                   >
                     <div
                       className="ChoiceInput__input__options__item__checkbox"
-                      data-selected={this.selection[option.value]}
+                      data-selected={this.state.selection[option.value]}
                       tabIndex="0"
                     >
                       <div
                         className="ChoiceInput__input__options__item__checkbox__image"
-                        data-selected={this.selection[option.value]}
+                        data-selected={this.state.selection[option.value]}
                       />
                     </div>
                     <div className="ChoiceInput__input__options__item__text">{ option.text }</div>
@@ -125,8 +166,10 @@ class ChoiceInput extends Component {
 
 }
 
-const mapStateToProps = state => {
-  return state;
+const mapStateToProps = (state, ownProps) => {
+  const formData = state.forms[ownProps.form] || {};
+  const value = formData[ownProps.name] || '';
+  return { value };
 };
 
 const mapDispatchToProps = {
