@@ -1,19 +1,39 @@
 .SectionTitle {
-
+  opacity: 0.75;
+  padding: 0px 10px;
 }
+.SectionTitle--center {
+  text-align: center;
+}
+.SectionTitle--left {
+  text-align: left;
+}
+.SectionTitle--right {
+  text-align: right;
+}
+
 .SectionTitle__h2 {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 24px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px #fff;
-  margin-left: 50px;
-  margin-bottom: 75px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -20px;
+  color: #892222;
+  font-size: 36px;
+  font-family: 'Arsenal', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  padding: 0px 16px;
+  margin-bottom: 25px;
+}
+.SectionTitle--left .SectionTitle__h2 {
+  margin-left: 27px;
 }
 
 
+.SectionTitle__line {
+  height: 0px;
+  border-bottom: 3px dotted rgba(121, 86, 73, 0.25);
+}
 
 
 
@@ -21,7 +41,7 @@
 
   .SectionTitle__h2 {
     font-size: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin-left: 25px;
   }
 

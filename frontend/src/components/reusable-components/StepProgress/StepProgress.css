@@ -55,8 +55,8 @@
   transition-duration: 0.25s;
 }
 .StepProgress__list__item[data-passed="false"]:hover {
-  color: #3e96f3;
-  box-shadow: inset 0px 0px 0px 3px #3e96f3,
+  color: #999999;
+  box-shadow: inset 0px 0px 0px 3px #999999,
     0px 0px 0px 25px #fff;
   background-color: #fff;
   transition-duration: 0.25s;
