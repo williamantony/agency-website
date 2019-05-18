@@ -1,4 +1,5 @@
 export const SET_FORM_DATA = 'SET_FORM_DATA';
+export const RESET_FORM = 'RESET_FORM';
 
 export const setFormData = (form, formData = {}) => {
   return {
@@ -6,6 +7,15 @@ export const setFormData = (form, formData = {}) => {
     payload: {
       form,
       formData,
+    },
+  };
+};
+
+export const resetForm = (form) => {
+  return {
+    type: RESET_FORM,
+    payload: {
+      form,
     },
   };
 };
