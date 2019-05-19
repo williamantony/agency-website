@@ -1,5 +1,6 @@
 export const CREATE_FORM = 'CREATE_FORM';
 export const ADD_FORM_STEP = 'ADD_FORM_STEP';
+export const CHANGE_FORM_STEP = 'CHANGE_FORM_STEP';
 export const SET_FORM_DATA = 'SET_FORM_DATA';
 export const RESET_FORM = 'RESET_FORM';
 
@@ -21,6 +22,16 @@ export const addFormStep = (form, title = null, description = null, index = null
         title,
         description,
       },
+      index,
+    },
+  };
+};
+
+export const changeFormStep = (form, index = null) => {
+  return {
+    type: CHANGE_FORM_STEP,
+    payload: {
+      form,
       index,
     },
   };
