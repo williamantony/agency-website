@@ -1,4 +1,5 @@
 export const CREATE_FORM = 'CREATE_FORM';
+export const ADD_FORM_STEP = 'ADD_FORM_STEP';
 export const SET_FORM_DATA = 'SET_FORM_DATA';
 export const RESET_FORM = 'RESET_FORM';
 
@@ -7,6 +8,20 @@ export const createForm = (form) => {
     type: CREATE_FORM,
     payload: {
       form,
+    },
+  };
+};
+
+export const addFormStep = (form, title = null, description = null, index = null) => {
+  return {
+    type: ADD_FORM_STEP,
+    payload: {
+      form,
+      config: {
+        title,
+        description,
+      },
+      index,
     },
   };
 };

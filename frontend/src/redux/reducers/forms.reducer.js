@@ -1,5 +1,6 @@
 import {
   CREATE_FORM,
+  ADD_FORM_STEP,
   SET_FORM_DATA,
   RESET_FORM,
 } from '../actions';
@@ -16,7 +17,20 @@ export default (state = initialState, actions) => {
         [actions.payload.form]: {
           data: {},
           config: {},
+          steps: {},
         },
+      };
+
+    case ADD_FORM_STEP:
+      return {
+        ...state,
+        [actions.payload.form]: {
+          ...state[actions.payload.form],
+          steps: {
+            ...state[actions.payload.form].steps,
+            [actions.payload.index || state[actions.payload.form].steps.length + 1]: actions.payload.config,
+          },
+        }
       };
 
     case SET_FORM_DATA:
