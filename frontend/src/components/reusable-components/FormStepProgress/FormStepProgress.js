@@ -10,25 +10,36 @@ class FormStepProgress extends Component {
     this.form = props.form || 'FormStepProgress';
     this.state = {
       currentStep: 1,
-      steps: props.steps.map((step, index) => ({
-        id: uuid(),
-        index: index + 1,
-        text: step || index + 1,
-      })),
+      stepsCount: props.stepsCount || 1,
+      steps: [],
     };
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (!!props.currentStep && props.currentStep !== state.currentStep) {
+    if ((!!props.currentStep && props.currentStep !== state.currentStep) ||
+      (!!props.stepsCount && props.stepsCount !== state.stepsCount)) {
+      
+      const steps = [];
+      for (let i = 1; i <= props.stepsCount; i++) {
+        steps.push({
+          id: uuid(),
+          index: i,
+          text: i,
+        });
+      }
+
       return {
         currentStep: props.currentStep,
+        stepsCount: props.stepsCount,
+        steps,
       };
     }
     return null;
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.currentStep !== this.state.currentStep)
+  shouldComponentUpdate(nextProps) {
+    if ((nextProps.currentStep !== this.state.currentStep) ||
+      (nextProps.stepsCount !== this.state.stepsCount))
       return true;
     return false;
   }
@@ -68,9 +79,10 @@ class FormStepProgress extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { steps } = state.forms[ownProps.form] || {};
-  const { currentStep } = steps || {};
+  const { currentStep, count } = steps || {};
   return {
     currentStep,
+    stepsCount: count,
   };
 };
 
