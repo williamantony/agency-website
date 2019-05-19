@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { storeData } from '../../../redux/actions';
+import { changeFormStep } from '../../../redux/actions';
 import uuid from 'uuid/v4';
-import './StepProgress.css';
+import './FormStepProgress.css';
 
-class StepProgress extends Component {
+class FormStepProgress extends Component {
   constructor(props) {
     super(props);
-    this.name = props.name || 'StepProgress';
+    this.form = props.form || 'FormStepProgress';
     this.state = {
       currentStep: 1,
       steps: props.steps.map((step, index) => ({
@@ -34,7 +34,7 @@ class StepProgress extends Component {
   }
 
   changeProgress = (index) => {
-    this.props.storeData(this.name, index);
+    this.props.changeFormStep(this.form, index);
     this.setState({
       currentStep: index,
     });
@@ -44,16 +44,16 @@ class StepProgress extends Component {
     const progress = `${ ((100 / (this.state.steps.length - 1)) * (this.state.currentStep - 1)) }%`;
 
     return (
-      <div className="StepProgress">
-        <div className="StepProgress__bar">
-          <div className="StepProgress__bar__fill" style={{ width: progress }}></div>
+      <div className="FormStepProgress">
+        <div className="FormStepProgress__bar">
+          <div className="FormStepProgress__bar__fill" style={{ width: progress }}></div>
         </div>
-        <div className="StepProgress__list">
+        <div className="FormStepProgress__list">
           {
             this.state.steps.map(step => (
               <div
                 key={step.id}
-                className="StepProgress__list__item"
+                className="FormStepProgress__list__item"
                 data-passed={(step.index <= this.state.currentStep)}
                 onClick={() => this.changeProgress(step.index)}
               >{ step.text }</div>
@@ -67,13 +67,15 @@ class StepProgress extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const { steps } = state.forms[ownProps.form] || {};
+  const { currentStep } = steps || {};
   return {
-    currentStep: state.data[ownProps.name],
+    currentStep,
   };
 };
 
 const mapDispatchToProps = {
-  storeData,
+  changeFormStep,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StepProgress);
+export default connect(mapStateToProps, mapDispatchToProps)(FormStepProgress);
