@@ -37,6 +37,22 @@ export const changeFormStep = (form, index = null) => {
   };
 };
 
+export const nextFormStep = (form) => {
+  return (dispatch, getState) => {
+    const { currentStep, isLastStep } = getState().forms[form].steps;
+    const nextStep = (!isLastStep) ? (currentStep + 1) : currentStep;
+    return dispatch(changeFormStep(form, nextStep));
+  };
+};
+
+export const previousFormStep = (form) => {
+  return (dispatch, getState) => {
+    const { currentStep } = getState().forms[form].steps;
+    const nextStep = (currentStep > 1) ? (currentStep - 1) : 1;
+    return dispatch(changeFormStep(form, nextStep));
+  };
+};
+
 export const setFormData = (form, formData = {}) => {
   return {
     type: SET_FORM_DATA,

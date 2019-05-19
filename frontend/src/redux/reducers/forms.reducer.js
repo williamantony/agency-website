@@ -33,9 +33,11 @@ export default (state = initialState, actions) => {
           ...state[actions.payload.form],
           steps: {
             ...state[actions.payload.form].steps,
-            [actions.payload.index || state[actions.payload.form].steps.length + 1]: actions.payload.config,
+            [actions.payload.index || state[actions.payload.form].steps.count + 1]: actions.payload.config,
             count: state[actions.payload.form].steps.count + 1,
-            hasMultipleSteps: true,
+            currentStep: 1,
+            hasMultipleSteps: state[actions.payload.form].steps.count > 1,
+            isLastStep: state[actions.payload.form].steps.count === 0,
           },
         },
       };
