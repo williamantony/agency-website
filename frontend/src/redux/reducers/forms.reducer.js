@@ -1,4 +1,5 @@
 import {
+  CREATE_FORM,
   SET_FORM_DATA,
   RESET_FORM,
 } from '../actions';
@@ -9,6 +10,15 @@ const initialState = {
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
+    case CREATE_FORM:
+      return {
+        ...state,
+        [actions.payload.form]: {
+          data: {},
+          config: {},
+        },
+      };
+
     case SET_FORM_DATA:
       return {
         ...state,
