@@ -1,5 +1,5 @@
 export const CREATE_FORM = 'CREATE_FORM';
-export const ADD_FORM_STEP = 'ADD_FORM_STEP';
+export const SET_FORM_STEPS = 'SET_FORM_STEPS';
 export const CHANGE_FORM_STEP = 'CHANGE_FORM_STEP';
 export const SET_FORM_DATA = 'SET_FORM_DATA';
 export const RESET_FORM = 'RESET_FORM';
@@ -13,17 +13,51 @@ export const createForm = (form) => {
   };
 };
 
-export const addFormStep = (form, title = null, description = null, index = null) => {
+export const setFormSteps = (form, steps) => {
   return {
-    type: ADD_FORM_STEP,
+    type: SET_FORM_STEPS,
     payload: {
       form,
-      config: {
-        title,
-        description,
-      },
-      index,
+      steps,
     },
+  };
+};
+
+export const addFormStep = (form, id, index) => {
+  return (dispatch, getState) => {
+    const { steps } = getState().forms[form];
+
+    index = (typeof index === 'string')
+      ? ((index === 'next') ? (steps.currentStep + 1) : (steps.count + 1))
+      : index;
+
+    steps.order.splice(index - 1, 0, id);
+    steps.order.forEach((step, i) => {
+      steps.list[step] = i + 1;
+    });
+
+    steps.count = steps.order.length;
+    steps.hasMultipleSteps = steps.count > 1;
+
+    return dispatch(setFormSteps(form, steps));
+  };
+};
+
+export const removeFormStep = (form, id) => {
+  return (dispatch, getState) => {
+    const { steps } = getState().forms[form];
+    
+    steps.list = {};
+
+    steps.order = steps.order.filter(step => step !== id);
+    steps.order.forEach((step, index) => {
+      steps.list[step] = index + 1;
+    });
+
+    steps.count = steps.order.length;
+    steps.hasMultipleSteps = steps.count > 1;
+    
+    return dispatch(setFormSteps(form, steps));
   };
 };
 

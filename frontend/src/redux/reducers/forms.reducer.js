@@ -1,6 +1,6 @@
 import {
   CREATE_FORM,
-  ADD_FORM_STEP,
+  SET_FORM_STEPS,
   CHANGE_FORM_STEP,
   SET_FORM_DATA,
   RESET_FORM,
@@ -18,30 +18,28 @@ export default (state = initialState, actions) => {
         [actions.payload.form]: {
           data: {},
           steps: {
+            list: {},
+            order: [],
             count: 0,
-            currentStep: 0,
+            currentStep: 1,
             hasMultipleSteps: false,
             isLastStep: false,
           },
         },
       };
 
-    case ADD_FORM_STEP:
+    case SET_FORM_STEPS:
       return {
         ...state,
         [actions.payload.form]: {
           ...state[actions.payload.form],
           steps: {
             ...state[actions.payload.form].steps,
-            [actions.payload.index || state[actions.payload.form].steps.count + 1]: actions.payload.config,
-            count: state[actions.payload.form].steps.count + 1,
-            currentStep: 1,
-            hasMultipleSteps: state[actions.payload.form].steps.count > 1,
-            isLastStep: state[actions.payload.form].steps.count === 0,
+            ...actions.payload.steps,
           },
         },
       };
-
+      
     case CHANGE_FORM_STEP:
       return {
         ...state,
@@ -60,14 +58,20 @@ export default (state = initialState, actions) => {
         ...state,
         [actions.payload.form]: {
           ...state[actions.payload.form],
-          ...actions.payload.formData,
+          data: {
+            ...state[actions.payload.form].data,
+            ...actions.payload.formData,
+          },
         },
       };
     
     case RESET_FORM:
       return {
         ...state,
-        [actions.payload.form]: {},
+        [actions.payload.form]: {
+          ...state[actions.payload.form],
+          data: {},
+        },
       };
 
     default:
