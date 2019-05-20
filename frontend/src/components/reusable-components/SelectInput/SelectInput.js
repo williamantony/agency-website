@@ -147,7 +147,7 @@ class SelectInput extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const formData = state.forms[ownProps.form] || {};
+  const formData = state.forms[ownProps.form].data || {};
   const value = formData[ownProps.name] || '';
   return {
     value,
