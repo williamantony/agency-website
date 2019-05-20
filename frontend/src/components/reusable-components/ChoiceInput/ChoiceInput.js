@@ -11,6 +11,7 @@ class ChoiceInput extends Component {
       name: props.name || uuid(),
       form: props.form || 'default_form',
       type: props.type || 'checkbox',
+      flex: props.flex || 'column',
       label: props.label || '',
       value: '',
       options: (props.options || []).map(option => ({
@@ -22,84 +23,80 @@ class ChoiceInput extends Component {
       })),
     };
 
-    this.selection = {};
+    const selection = {};
 
     this.input.options.forEach(option => {
-      this.selection[option.value] = option.selected;
+      selection[option.value] = option.selected;
       if (option.selected)
         this.input.value = option.value;
     });
-    
+
+    this.input.value = this.input.type === 'checkbox' ? selection : '';
+
+    this.props.setFormData(this.input.form, {
+      [this.input.name]: this.input.value,
+    });
+
     this.state = {
       value: this.input.value,
-      selection: this.selection,
+      selection,
       isFocused: false,
-      isFilled: false,
     };
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.value !== state.value) {
-      const selection = Object.keys(state.selection).reduce((selection, name) => {
-        return {
-          ...selection,
-          [name]: false,
-        };
-      }, {});
 
-      const returns = {
-        value: props.value,
-        selection,
-        isFilled: props.value !== '',
-      }
-
-      if (props.value !== '') {
-        return {
-          ...returns,
-          selection: {
-            ...selection,
-            [props.value]: true,
-          },
-        };
-      }
-      return returns;
+    let propsValue = props.value;
+    let selection = {};
+    
+    if (!propsValue || (typeof propsValue === 'string' && propsValue === '')) {
+      propsValue = {};
     }
-    return null;
+
+    if (!!propsValue && typeof propsValue === 'object') {
+
+        selection = Object.keys(propsValue).reduce((obj, key) => {
+          if (propsValue[key] === true)
+            obj[key] = true;
+          return obj;
+        }, {});
+
+    } else {
+      selection[propsValue] = true;
+    }
+
+    return {
+      value: selection,
+      selection,
+    };
+
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.value !== this.state.value) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
-    if (nextState.isFilled !== this.state.isFilled) return true;
+    if (this.input.type === 'checkbox') return true;
     return false;
   }
 
   chooseOption = (optionValue, e) => {
     if (!!e && e.type === 'keypress') {
       e.preventDefault();
-      if (e.key !== 'Enter') {
+      if (e.key !== 'Enter' && e.key !== ' ') {
         return false;
       }
     }
 
     let value = optionValue;
+    let selection = this.state.selection;
 
     if (this.input.type === 'checkbox') {
-      this.selection[optionValue] = !this.selection[optionValue];
-      value = this.selection;
-    } else if (this.input.type === 'radio') {
-      this.selection = {};
-      this.selection[value] = true;
+      selection[optionValue] = !selection[optionValue];
+      value = selection;
     }
 
     this.props.setFormData(this.input.form, {
       [this.input.name]: value,
-    });
-
-    this.setState({
-      value,
-      selection: this.selection,
-      isFilled: value.length !== 0,
     });
   }
 
@@ -125,19 +122,18 @@ class ChoiceInput extends Component {
     return (
       <div
         className={ `ChoiceInput ${ (this.input.label === '') ? 'ChoiceInput--nolabel' : '' }` }
-        data-filled={this.state.isFilled}
         data-focused={this.state.isFocused}
       >
         <div className="ChoiceInput__holder">
           <label htmlFor={this.input.name} className="ChoiceInput__label">{ this.input.label }</label>
           <div className="ChoiceInput__input">
-            <div className="ChoiceInput__input__options">
+            <div className={ `ChoiceInput__input__options ChoiceInput__input__options--${this.input.flex}` }>
               {
                 this.input.options.map(option => (
                   <div
                     key={option.id}
                     className="ChoiceInput__input__options__item"
-                    data-selected={this.state.selection[option.value]}
+                    data-selected={this.state.value[option.value]}
                     onClick={() => this.chooseOption(option.value)}
                     onKeyPress={(e) => this.chooseOption(option.value, e)}
                     onFocus={this.handleFocus}
@@ -145,12 +141,12 @@ class ChoiceInput extends Component {
                   >
                     <div
                       className="ChoiceInput__input__options__item__checkbox"
-                      data-selected={this.state.selection[option.value]}
+                      data-selected={this.state.value[option.value]}
                       tabIndex="0"
                     >
                       <div
                         className="ChoiceInput__input__options__item__checkbox__image"
-                        data-selected={this.state.selection[option.value]}
+                        data-selected={this.state.value[option.value]}
                       />
                     </div>
                     <div className="ChoiceInput__input__options__item__text">{ option.text }</div>
@@ -167,7 +163,7 @@ class ChoiceInput extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const formData = state.forms[ownProps.form] || {};
+  const formData = state.forms[ownProps.form].data || {};
   const value = formData[ownProps.name] || '';
   return { value };
 };
