@@ -23,7 +23,7 @@ export const setFormSteps = (form, steps) => {
   };
 };
 
-export const addFormStep = (form, id, index) => {
+export const addFormStep = (form, id, index, events) => {
   return (dispatch, getState) => {
     const { steps } = getState().forms[form];
 
@@ -35,6 +35,11 @@ export const addFormStep = (form, id, index) => {
     steps.order.forEach((step, i) => {
       steps.list[step] = i + 1;
     });
+
+    steps.events[id] = {
+      ...steps.events[id],
+      ...events,
+    };
 
     steps.count = steps.order.length;
     steps.hasMultipleSteps = steps.count > 1;

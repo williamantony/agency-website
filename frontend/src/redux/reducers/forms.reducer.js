@@ -20,6 +20,7 @@ export default (state = initialState, actions) => {
           steps: {
             list: {},
             order: [],
+            events: {},
             count: 0,
             currentStep: 1,
             hasMultipleSteps: false,
