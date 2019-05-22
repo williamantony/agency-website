@@ -4,11 +4,13 @@ export const CHANGE_FORM_STEP = 'CHANGE_FORM_STEP';
 export const SET_FORM_DATA = 'SET_FORM_DATA';
 export const RESET_FORM = 'RESET_FORM';
 
-export const createForm = (form) => {
+export const createForm = (form, id) => {
+  localStorage.setItem(`${form}__id`, id);
   return {
     type: CREATE_FORM,
     payload: {
       form,
+      id,
     },
   };
 };
@@ -103,6 +105,7 @@ export const setFormData = (form, formData = {}) => {
 };
 
 export const resetForm = (form) => {
+  localStorage.removeItem(`${form}__id`);
   return {
     type: RESET_FORM,
     payload: {

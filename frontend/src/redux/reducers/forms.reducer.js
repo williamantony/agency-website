@@ -16,6 +16,7 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         [actions.payload.form]: {
+          id: actions.payload.id,
           data: {},
           steps: {
             list: {},
